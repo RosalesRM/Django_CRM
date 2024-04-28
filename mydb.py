@@ -3,20 +3,23 @@
 # pip install mysql
 # pip install mysql-connector
 # pip install mysql-connector-python 
-
 import mysql.connector
 
+# Establecer la conexión con el servidor MySQL
 dataBase = mysql.connector.connect(
-	host = 'localhost',
-	user = 'root',
-	passwd = 'password123'
+    host="localhost",
+    user="root",
+    passwd=""  # Contraseña de tu servidor MySQL
+)
 
-	)
-
-# prepare a cursor object
+# Preparar un objeto cursor
 cursorObject = dataBase.cursor()
 
-# Create a database
-cursorObject.execute("CREATE DATABASE elderco")
+# Crear una base de datos
+cursorObject.execute("CREATE DATABASE IF NOT EXISTS oblivion")
 
-print("All Done!")
+# Cerrar el cursor y la conexión
+cursorObject.close()
+dataBase.close()
+
+print("Base de datos creada correctamente")
